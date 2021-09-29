@@ -12,22 +12,22 @@ class ArticleList extends Component {
     }
 
     componentDidMount() {
-        fetch('/historie/articles')
+        fetch('https://historie.azurewebsites.net/articles')
             .then(response => response.json())
             .then(data => this.setState({articles: data}));
 
-        fetch('/kasse/articles')
+        fetch('https://kasse.azurewebsites.net/articles')
             .then(response => response.json())
             .then(data => this.setState({kasse: data}));
 
-        fetch('/vorschlaege/articles')
+        fetch('https://vorschlaege.azurewebsites.net/articles')
             .then(response => response.json())
             .then(data => this.setState({vorschlaege: data}));
 
     }
 
     async remove(id) {
-        await fetch(`/historie/articles/${id}`, {
+        await fetch(`https://historie.azurewebsites.net/articles/${id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',

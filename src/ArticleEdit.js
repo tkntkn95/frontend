@@ -21,7 +21,7 @@ class ArticleEdit extends Component {
 
     async componentDidMount() {
         if (this.props.match.params.id !== 'new') {
-            const article = await (await fetch(`/historie/articles/${this.props.match.params.id}`)).json();
+            const article = await (await fetch(`https://historie.azurewebsites.net/articles/${this.props.match.params.id}`)).json();
             this.setState({item: article});
         }
     }
@@ -39,7 +39,7 @@ async handleSubmit(event) {
     event.preventDefault();
     const {item} = this.state;
 
-    await fetch('/historie/articles' + (item.id ? '/' + item.id : ''), {
+    await fetch('https://historie.azurewebsites.net/articles' + (item.id ? '/' + item.id : ''), {
         method: (item.id) ? 'PUT' : 'POST',
         headers: {
             'Accept': 'application/json',
