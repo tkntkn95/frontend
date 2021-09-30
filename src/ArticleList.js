@@ -2,32 +2,34 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
 import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 class ArticleList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {articles: [], kasse: [], vorschlaege: [] };
+        this.state = {articles: [], kasse: [], vorschlaege: [], dummy: null };
         this.remove = this.remove.bind(this);
     }
 
+
     componentDidMount() {
-        fetch('https://historie.azurewebsites.net/articles')
-            .then(response => response.json())
-            .then(data => this.setState({articles: data}));
 
-        fetch('https://kasse.azurewebsites.net/articles')
-            .then(response => response.json())
-            .then(data => this.setState({kasse: data}));
+        axios.get('http://historie.azurewebsites.net/articles')
+            .then(response => this.setState({articles: response.data}));
 
-        fetch('https://vorschlaege.azurewebsites.net/articles')
-            .then(response => response.json())
-            .then(data => this.setState({vorschlaege: data}));
+
+        axios.get('http://kasse.azurewebsites.net/articles')
+            .then(response => this.setState({kasse: response.data}));
+
+        axios.get('http://vorschlaege.azurewebsites.net/articles')
+            .then(response => this.setState({vorschlaege: response.data}));
+
 
     }
 
     async remove(id) {
-        await fetch(`https://historie.azurewebsites.net/articles/${id}`, {
+        await fetch(`http://historie.azurewebsites.net/articles/${id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
