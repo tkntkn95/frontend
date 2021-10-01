@@ -40,7 +40,6 @@ class ArticleList extends Component {
             this.setState({articles: updatedArticles});
 
         });
-          setTimeout(() => window.location.reload(), 1000);
     }
 
     render() {
