@@ -41,6 +41,7 @@ class ArticleList extends Component {
 
         });
           this.forceUpdate();
+          setTimeout(() => window.location.reload(), 1000);
     }
 
     render() {
