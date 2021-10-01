@@ -15,21 +15,21 @@ class ArticleList extends Component {
 
     componentDidMount() {
 
-        axios.get('http://historie.azurewebsites.net/articles')
+        axios.get('https://historie.azurewebsites.net/articles')
             .then(response => this.setState({articles: response.data}));
 
 
-        axios.get('http://kasse.azurewebsites.net/articles')
+        axios.get('https://kasse.azurewebsites.net/articles')
             .then(response => this.setState({kasse: response.data}));
 
-        axios.get('http://vorschlaege.azurewebsites.net/articles')
+        axios.get('https://vorschlaege.azurewebsites.net/articles')
             .then(response => this.setState({vorschlaege: response.data}));
 
 
     }
 
     async remove(id) {
-        await fetch(`http://historie.azurewebsites.net/articles/${id}`, {
+        await fetch(`https://historie.azurewebsites.net/articles/${id}`, {
             method: 'DELETE',
             headers: {
                 'Accept': 'application/json',
